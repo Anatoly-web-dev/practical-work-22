@@ -66,26 +66,9 @@
 		grid-template-columns: repeat(2, auto);
 	}
 
-	.chat__hint {
-		padding: 15px 5px 15px 45px;
-		font-size: 12px;
-	}
-
-	.chat__hint::before {
-		width: 32px;
-		height: 32px;
-		margin: -16px 0 0 0;
-	}
-
 	.chat__status-output p {
 		display: flex;
 		flex-direction: column;
-	}
-
-	.chat__hint-text {
-		margin: 0 0 0 5px;
-		text-align: left;
-		font-size: 11px;
 	}
 
 	.content {

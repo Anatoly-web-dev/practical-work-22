@@ -457,58 +457,17 @@
 	line-height: 24px;
 }
 
-.chat__hint {
-	align-self: center;
-	padding: 15px 10px 15px 70px;
-	position: relative;
-	background-color: rgba(217, 249, 222, 0.9);
-	color: rgb(120, 120, 120);
-	font-style: italic;
-	letter-spacing: 0.7px;
-	opacity: 0.8;
-}
-
-.chat__hint::before {
-	content: "";
-	width: 48px;
-	height: 48px;
-	margin: -24px 0 0 0;
-	background: url(../img/sign-icon.svg) center/cover no-repeat;
-	position: absolute;
-	top: 50%;
-	left: 10px;
-}
-
-.chat__hint-title {
-	font-size: 14px;
-	margin: 0 0 10px;
-	font-weight: 600;
-}
-
-.chat__hint-text {
-	margin: 0 0 0 20px;
-	text-align: left;
-}
-
-.chat__hint-text span {
-	font-weight: 700;
-	font-style: normal;
-}
-
-.chat__screen {
-	height: 500px;
-	overflow: auto;
-	padding: 15px;
-	background-color: rgba(255, 255, 255, 0.8);
-	border-radius: 5px;
-	letter-spacing: 1px;
-}
-
 .chat__output {
+	height: 500px;
+	padding: 15px;
 	display: flex;
 	gap: 20px;
 	flex-direction: column;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 5px;
+	letter-spacing: 1px;
 	font-size: 13px;
+	overflow: auto;
 }
 
 .chat__sent-message,
