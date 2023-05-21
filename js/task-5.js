@@ -10,22 +10,19 @@ function chatStart() {
 		showConnectStatus('установлено', 'green'); // показываем статус
 	});
 	websocket.addEventListener('message', (event) => { // сообщение получено
-		showContent(event.data); // выводим его на экран
-		// выводит полученные с сервера данные на экран
-		function showContent(message) {
-			const chatOutput = document.querySelector('.chat__output');
-			let html;
-			if (message.includes('www' || 'http')) {
-				html = `<p class="chat__sent-message completed"> <a href="${message}"
-				target="_blank">Посмотреть местоположение</a></p>`;
-			} else if (message.includes('Ошибка' || 'error')) {
-				html = `<p class="chat__sent-message error">${message}</p>`
-			} else { // выводим на экран введенное в инпут сообщение
-				html = `<p class="chat__sent-message">${message}</p>
+		// выводим полученные с сервера данные на экран
+		const chatOutput = document.querySelector('.chat__output');
+		let div = document.createElement('div');
+		if (event.data.includes('www' || 'http')) {
+			div.innerHTML = `<p class="chat__sent-message completed"> 
+				<a href="${message}" target="_blank">Посмотреть местоположение</a></p>`;
+		} else if (event.data.includes('Ошибка' || 'error')) {
+			div.innerHTML = `<p class="chat__sent-message error">${message}</p>`
+		} else { // выводим на экран введенное в инпут сообщение
+			div.innerHTML = `<p class="chat__sent-message">${message}</p>
 				<p class="chat__get-message">${message}</p>`;
-			}
-			chatOutput.insertAdjacentHTML('beforeend', html); // выводим соответствующее сообщение на экран
 		}
+		chatOutput.append(html);
 	});
 	websocket.addEventListener('close', () => { // соединение закрыто
 		showConnectStatus('закрыто', 'red'); // показываем статус
@@ -59,11 +56,9 @@ function chatStart() {
 				websocket.send(`Ошибка! Координаты не получены :(<br>Причина: ${data.message}`);
 			}
 			showConnectStatus('сообщение получено', 'green'); // показываем статус 
-		} else { // передаем сообщение об ошибке на сервер 
-			if (websocket) {
-				websocket.send('Ошибка! Браузер не поддерживает геолокацию :(');
-				showConnectStatus('сообщение получено', 'green'); // показываем статус 
-			}
+		} else if (!('geolocation' in navigator) && websocket) { // передаем сообщение об ошибке
+			websocket.send('Ошибка! Браузер не поддерживает геолокацию :(');
+			showConnectStatus('сообщение получено', 'green'); // показываем статус 
 		}
 	}
 	// показывает текущий статус соединения 
