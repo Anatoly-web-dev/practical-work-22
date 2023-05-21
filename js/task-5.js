@@ -12,17 +12,17 @@ function chatStart() {
 	websocket.addEventListener('message', (event) => { // сообщение получено
 		// выводим полученные с сервера данные на экран
 		const chatOutput = document.querySelector('.chat__output');
-		let div = document.createElement('div');
+		let html;
 		if (event.data.includes('www' || 'http')) {
-			div.innerHTML = `<p class="chat__sent-message completed"> 
+			html = `<p class="chat__sent-message completed"> 
 				<a href="${(event.data)}" target="_blank">Посмотреть местоположение</a></p>`;
 		} else if (event.data.includes('Ошибка' || 'error')) {
-			div.innerHTML = `<p class="chat__sent-message error">${event.data}</p>`
+			html = `<p class="chat__sent-message error">${event.data}</p>`
 		} else { // выводим на экран введенное в инпут сообщение
-			div.innerHTML = `<p class="chat__sent-message">${event.data}</p>
+			html = `<p class="chat__sent-message">${event.data}</p>
 				<p class="chat__get-message">${event.data}</p>`;
 		}
-		chatOutput.append(html);
+		chatOutput.insertAdjacentHTML('beforeend', html);
 	});
 	websocket.addEventListener('close', () => { // соединение закрыто
 		showConnectStatus('закрыто', 'red'); // показываем статус
