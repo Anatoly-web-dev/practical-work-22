@@ -19,7 +19,7 @@ function chatStart() {
 		websocket.addEventListener('close', () => { // соединение закрыто
 			showConnectStatus('закрыто', 'red'); // показываем статус
 			chatOutput.innerHTML = ''; // очищаем экран с собщениями
-			//chatStart(); // заново подключаем
+			chatStart(); // заново все подключаем
 		});
 
 		websocket.addEventListener('error', () => { // ошибки соединения
