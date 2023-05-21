@@ -15,12 +15,12 @@ function chatStart() {
 		let div = document.createElement('div');
 		if (event.data.includes('www' || 'http')) {
 			div.innerHTML = `<p class="chat__sent-message completed"> 
-				<a href="${message}" target="_blank">Посмотреть местоположение</a></p>`;
+				<a href="${(event.data)}" target="_blank">Посмотреть местоположение</a></p>`;
 		} else if (event.data.includes('Ошибка' || 'error')) {
-			div.innerHTML = `<p class="chat__sent-message error">${message}</p>`
+			div.innerHTML = `<p class="chat__sent-message error">${event.data}</p>`
 		} else { // выводим на экран введенное в инпут сообщение
-			div.innerHTML = `<p class="chat__sent-message">${message}</p>
-				<p class="chat__get-message">${message}</p>`;
+			div.innerHTML = `<p class="chat__sent-message">${event.data}</p>
+				<p class="chat__get-message">${event.data}</p>`;
 		}
 		chatOutput.append(html);
 	});
